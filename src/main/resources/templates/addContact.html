@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj kontakt</title>
+</head>
+<body>
+
+    <div style="text-align: center;">
+        <form action="/contact/add" method="post" th:object="${contactForm}">
+             <input type="text" th:field="*{name}" placeholder="Imie"> <br/>
+             <input type="text" th:field="*{surname}" placeholder="Nazwisko"> <br/>
+             <input type="text" th:field="*{phone}" placeholder="Telefon"> <br/>
+             <input type="submit" value="Wyślij">
+        </form>
+    </div>
+
+
+</body>
+</html>
