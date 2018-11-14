@@ -36,6 +36,6 @@ public class ContactController {
     @GetMapping("/contact/show")
     @ResponseBody
     public String showAllContacts() {
-        return contactService.getContactForms().toString();
+        return contactService.getContactForms().toString() + " hehe";
     }
 }
