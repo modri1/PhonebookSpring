@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.oskarpolak.phonebook.models.LoginForm;
 import pl.oskarpolak.phonebook.models.RegisterForm;
 import pl.oskarpolak.phonebook.models.services.UserService;
 
@@ -46,6 +47,24 @@ public class UserController {
         userService.addUser(registerForm);
         model.addAttribute("registerInfo", "Zarejestrowano poprawnie!");
         return "registerForm";
+    }
+
+    @GetMapping("/user/login")
+    public String login(Model model){
+        model.addAttribute("loginForm", new LoginForm());
+        return "loginForm";
+    }
+
+    @PostMapping("/user/login")
+    public String loginData(@ModelAttribute LoginForm loginForm,
+                            Model model){
+        if(userService.checkUserLoginData(loginForm)){
+            model.addAttribute("loginInfo", "Zalogowano!");
+            return "loginForm";
+        }
+
+        model.addAttribute("loginInfo", "Nie poprawne dane");
+        return "loginForm";
     }
 
 }

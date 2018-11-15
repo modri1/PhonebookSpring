@@ -7,8 +7,7 @@
 <body>
     <div style="text-align: center;">
         <ul>
-            <li th:each="contact : ${contacts}"
-                th:text="${contact.getNumber()}"></li>
+            <li th:each="contact : ${contacts}" th:text="${contact.getNumber()}"></li>
         </ul>
     </div>
 </body>

@@ -2,6 +2,7 @@ package pl.oskarpolak.phonebook.models.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.oskarpolak.phonebook.models.LoginForm;
 import pl.oskarpolak.phonebook.models.RegisterForm;
 import pl.oskarpolak.phonebook.models.UserEntity;
 import pl.oskarpolak.phonebook.models.repositories.UserRepository;
@@ -27,5 +28,9 @@ public class UserService {
         newUser.setPassword(userForm.getPassword());
 
         userRepository.save(newUser);
+    }
+
+    public boolean checkUserLoginData(LoginForm loginForm){
+        return userRepository.existsByLoginAndPassword(loginForm.getLogin(), loginForm.getPassword());
     }
 }
