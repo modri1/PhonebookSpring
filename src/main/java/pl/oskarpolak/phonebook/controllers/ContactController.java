@@ -3,10 +3,7 @@ package pl.oskarpolak.phonebook.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import pl.oskarpolak.phonebook.models.ContactForm;
 import pl.oskarpolak.phonebook.models.services.ContactService;
 
@@ -38,4 +35,28 @@ public class ContactController {
     public String showAllContacts() {
         return contactService.getContactForms().toString() + " hehe";
     }
+
+    @GetMapping("/contact/show/id/{id}")
+    @ResponseBody
+    public String showOneContact(@PathVariable("id") int contactId){
+        return contactService
+                .findOneContact(contactId)
+                .map(s -> s.toString())
+                .orElse("Contact with this id not exist");
+    }
+
+
+    @GetMapping("/contact/show/surname/{surname}")
+    @ResponseBody
+    public String showOneContactSurname(@PathVariable("surname") String surname){
+        return contactService
+                .findOneContact(surname)
+                .map(s -> s.toString())
+                .orElse("Contact with this surname not exist");
+
+    }
+
+
+
+
 }
