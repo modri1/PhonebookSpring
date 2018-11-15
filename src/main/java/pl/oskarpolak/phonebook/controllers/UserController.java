@@ -34,7 +34,7 @@ public class UserController {
                                       BindingResult bindingResult,
                                       Model model){
         if(bindingResult.hasErrors()){
-            model.addAttribute("registerForm", "Błędne dane");
+            model.addAttribute("registerInfo", "Błędne dane");
             return "registerForm";
         }
 
