@@ -23,14 +23,16 @@ public class IndexController {
     @GetMapping("/")
     @ResponseBody
     public  String index(HttpServletResponse servletResponse){
+        
         if(!userSession.isLogin()){
             try {
                 servletResponse.sendRedirect("/user/login");
+                return "";
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        return "Witaj w twoteetoroomtwotwo klubie ksiazki telefonicznej";
+        return "Witaj, " + userSession.getUserEntity().getPassword();
     }
 
 }

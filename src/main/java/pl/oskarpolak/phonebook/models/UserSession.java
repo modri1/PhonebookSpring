@@ -10,6 +10,6 @@ import pl.oskarpolak.phonebook.models.entities.UserEntity;
 @Scope(scopeName = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Data
 public class UserSession {
-    private boolean isLogin;
+    private boolean isLogin ;
     private UserEntity userEntity;
 }
