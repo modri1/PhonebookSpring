@@ -8,8 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.oskarpolak.phonebook.models.LoginForm;
-import pl.oskarpolak.phonebook.models.RegisterForm;
+import pl.oskarpolak.phonebook.models.forms.LoginForm;
+import pl.oskarpolak.phonebook.models.forms.RegisterForm;
 import pl.oskarpolak.phonebook.models.services.UserService;
 
 import javax.validation.Valid;
@@ -58,7 +58,7 @@ public class UserController {
     @PostMapping("/user/login")
     public String loginData(@ModelAttribute LoginForm loginForm,
                             Model model){
-        if(userService.checkUserLoginData(loginForm)){
+        if(userService.tryLogin(loginForm)){
             model.addAttribute("loginInfo", "Zalogowano!");
             return "loginForm";
         }

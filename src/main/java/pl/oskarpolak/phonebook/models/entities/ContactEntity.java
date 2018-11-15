@@ -1,4 +1,4 @@
-package pl.oskarpolak.phonebook.models;
+package pl.oskarpolak.phonebook.models.entities;
 
 import lombok.Data;
 

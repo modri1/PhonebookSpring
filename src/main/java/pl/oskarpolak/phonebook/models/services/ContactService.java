@@ -2,11 +2,10 @@ package pl.oskarpolak.phonebook.models.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.oskarpolak.phonebook.models.ContactEntity;
-import pl.oskarpolak.phonebook.models.ContactForm;
+import pl.oskarpolak.phonebook.models.entities.ContactEntity;
+import pl.oskarpolak.phonebook.models.forms.ContactForm;
 import pl.oskarpolak.phonebook.models.repositories.ContactRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
