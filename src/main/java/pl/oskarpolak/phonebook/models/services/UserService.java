@@ -2,6 +2,7 @@ package pl.oskarpolak.phonebook.models.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.oskarpolak.phonebook.models.RegisterForm;
 import pl.oskarpolak.phonebook.models.UserEntity;
 import pl.oskarpolak.phonebook.models.repositories.UserRepository;
 

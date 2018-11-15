@@ -8,6 +8,9 @@
     <div style="text-align: center;">
         <h1 th:text="${registerInfo}"></h1>
 
+
+        <p th:if="${#fields.hasErrors('vehicle.licensePlate')}" class="label label-danger" th:errors="*{vehicle.licensePlate}">Incorrect LP</p>
+
         <form action="/user/add" method="post" th:object="${registerForm}">
             <input type="text" th:field="*{login}" placeholder="Login"><br/>
             <input type="password" th:field="*{password}" placeholder="Hasło"><br/>
