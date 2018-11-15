@@ -39,7 +39,7 @@ public class ContactService {
         return contactRepository.findContactBySurname(surname);
     }
 
-    public List<ContactEntity> getContactForms(){
+    public List<ContactEntity> getContacts(){
         return contactRepository.findAllContacts();
     }
 }

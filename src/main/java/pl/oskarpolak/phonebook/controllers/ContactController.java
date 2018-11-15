@@ -31,9 +31,9 @@ public class ContactController {
     }
 
     @GetMapping("/contact/show")
-    @ResponseBody
-    public String showAllContacts() {
-        return contactService.getContactForms().toString() + " hehe";
+    public String showAllContacts(Model model) {
+        model.addAttribute("contacts", contactService.getContacts());
+        return "contactsList";
     }
 
     @GetMapping("/contact/show/id/{id}")
