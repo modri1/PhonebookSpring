@@ -1,7 +1,6 @@
 package pl.oskarpolak.phonebook.models;
 
 import lombok.Data;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 

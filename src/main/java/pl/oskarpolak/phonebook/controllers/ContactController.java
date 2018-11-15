@@ -25,8 +25,15 @@ public class ContactController {
     }
 
     @PostMapping("/contact/add")
-    public String getDataFromAddForm(@ModelAttribute ContactForm contactForm){
+    public String getDataFromAddForm(@ModelAttribute ContactForm contactForm,
+                                     Model model){
+        if(contactService.checkIfContactExists(contactForm.getSurname())){
+            model.addAttribute("isSurnameBusy", true);
+            return "addContact";
+        }
         contactService.addContact(contactForm);
+
+
         return "addContact"; //todo change after save data
     }
 

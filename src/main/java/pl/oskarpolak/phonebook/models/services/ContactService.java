@@ -21,6 +21,10 @@ public class ContactService {
     }
 
 
+    public boolean checkIfContactExists(String surname){
+        return contactRepository.existsBySurname(surname);
+    }
+
     public void addContact(ContactForm contactForm){
         ContactEntity newContact = new ContactEntity();
         newContact.setName(contactForm.getName());

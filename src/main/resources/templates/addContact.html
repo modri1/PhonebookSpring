@@ -7,6 +7,8 @@
 <body>
 
     <div style="text-align: center;">
+        <h1 th:if="${isSurnameBusy != null}">Nazwisko zajęte</h1>
+
         <form action="/contact/add" method="post" th:object="${contactForm}">
              <input type="text" th:field="*{name}" placeholder="Imie"> <br/>
              <input type="text" th:field="*{surname}" placeholder="Nazwisko"> <br/>

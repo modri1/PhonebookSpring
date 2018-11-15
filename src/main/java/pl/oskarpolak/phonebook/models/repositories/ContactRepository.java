@@ -15,4 +15,6 @@ public interface ContactRepository extends CrudRepository<ContactEntity, Integer
 
     @Query(nativeQuery = true, value = "SELECT * FROM contact WHERE LOWER(surname) = LOWER(?1)")
     Optional<ContactEntity> findContactBySurname(String surname);
+
+    boolean existsBySurname(String surname);
 }
