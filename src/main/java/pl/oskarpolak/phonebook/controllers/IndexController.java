@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.oskarpolak.phonebook.models.UserSession;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @Controller
 public class IndexController {
     final UserSession userSession;
@@ -19,9 +22,13 @@ public class IndexController {
 
     @GetMapping("/")
     @ResponseBody
-    public  String index(){
+    public  String index(HttpServletResponse servletResponse){
         if(!userSession.isLogin()){
-            return "redirect:/user/login";
+            try {
+                servletResponse.sendRedirect("/user/login");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return "Witaj w twoteetoroomtwotwo klubie ksiazki telefonicznej";
     }
