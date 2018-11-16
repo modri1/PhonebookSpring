@@ -23,4 +23,15 @@ public class ContactEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
+
+    @Override
+    public String toString() {
+        return "ContactEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", number='" + number + '\'' +
+                ", user=" + user +
+                '}';
+    }
 }

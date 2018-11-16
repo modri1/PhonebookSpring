@@ -35,7 +35,7 @@ public class IndexController {
                 e.printStackTrace();
             }
         }
-        return "Witaj, " + userSession.getUserEntity().getContacts();
+        return "Witaj, " + userSession.getUserEntity().getContacts().toString();
     }
 
 }

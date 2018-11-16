@@ -19,4 +19,14 @@ public class UserEntity {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<ContactEntity> contacts;
 
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", creationTime=" + creationTime +
+                '}';
+    }
 }
