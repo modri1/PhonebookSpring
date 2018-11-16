@@ -14,7 +14,7 @@ public class UserEntity {
     private @Id @GeneratedValue int id;
     private String login;
     private String password;
-    private @Column(name = "creation_time") LocalDateTime creationTime;
+   // private @Column(name = "creation_time") LocalDateTime creationTime;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<ContactEntity> contacts;
@@ -27,7 +27,7 @@ public class UserEntity {
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", creationTime=" + creationTime +
+             //   ", creationTime=" + creationTime +
                 '}';
     }
 }
