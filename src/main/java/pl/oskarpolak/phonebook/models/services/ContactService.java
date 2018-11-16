@@ -32,7 +32,7 @@ public class ContactService {
         newContact.setName(contactForm.getName());
         newContact.setSurname(contactForm.getSurname());
         newContact.setNumber(contactForm.getPhone());
-
+        newContact.setUser(userSession.getUserEntity());
 
        contactRepository.save(newContact);
     }
@@ -47,11 +47,7 @@ public class ContactService {
 
     public void deleteContact(int id){
         if(userSession.isLogin()){
-            if(userSession.getUserEntity().getContacts()
-                    .stream()
-                    .anyMatch(s -> s.getId() == id)){
-                contactRepository.deleteById(id);
-            }
+            userSession.getUserEntity().getContacts().removeIf(s -> s.getId() == id);
         }
     }
 
