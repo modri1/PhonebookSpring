@@ -45,7 +45,7 @@ public class ContactController {
         if(!userSession.isLogin()){
             return "redirect:/user/login";
         }
-        model.addAttribute("contacts", userSession.getUserEntity().getContacts());
+        model.addAttribute("contacts", contactService.getContactsForLoginUser());
         return "contactsList";
     }
 

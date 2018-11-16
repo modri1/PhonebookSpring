@@ -47,11 +47,19 @@ public class ContactService {
 
     public void deleteContact(int id){
         if(userSession.isLogin()){
-            userSession.getUserEntity().getContacts().removeIf(s -> s.getId() == id);
+            if(userSession.getUserEntity().getContacts()
+                    .stream()
+                    .anyMatch(s -> s.getId() == id)){
+                contactRepository.deleteById(id);
+            }
         }
     }
 
     public List<ContactEntity> getContacts(){
         return contactRepository.findAllContacts();
+    }
+
+    public List<ContactEntity> getContactsForLoginUser() {
+        return contactRepository.findAllByUser_Id(userSession.getUserEntity().getId());
     }
 }
