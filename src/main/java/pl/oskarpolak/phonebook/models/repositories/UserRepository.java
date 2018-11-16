@@ -13,8 +13,8 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
     boolean existsByLogin(String login);
 
 
-    @Query(nativeQuery = true, value = "SELECT * FROM user WHERE login = ?1 AND password = ?2")
-    Optional<UserEntity> getUserByLoginAndPassword(String login, String password);
+    @Query(nativeQuery = true, value = "SELECT * FROM user WHERE login = ?1")
+    Optional<UserEntity> getUserByLogin(String login);
 }
 
 

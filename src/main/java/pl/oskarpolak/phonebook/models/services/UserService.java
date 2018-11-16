@@ -15,11 +15,13 @@ public class UserService {
 
     final UserRepository userRepository;
     final UserSession userSession;
+    final PasswordHashingService passwordHashingService;
 
     @Autowired
-    public UserService(UserRepository userRepository, UserSession userSession) {
+    public UserService(UserRepository userRepository, UserSession userSession, PasswordHashingService passwordHashingService) {
         this.userRepository = userRepository;
         this.userSession = userSession;
+        this.passwordHashingService = passwordHashingService;
     }
 
     public boolean checkIfLoginExists(String login){
@@ -29,19 +31,22 @@ public class UserService {
     public void addUser(RegisterForm userForm){
         UserEntity newUser = new UserEntity();
         newUser.setLogin(userForm.getLogin());
-        newUser.setPassword(userForm.getPassword());
+        newUser.setPassword(passwordHashingService.hash(userForm.getPassword()));
 
         userRepository.save(newUser);
     }
 
     public boolean tryLogin(LoginForm loginForm){
         Optional<UserEntity> userOptional =
-                userRepository.getUserByLoginAndPassword(loginForm.getLogin(),
-                        loginForm.getPassword());
+                userRepository.getUserByLogin(loginForm.getLogin());
         if(userOptional.isPresent()){
-            userSession.setLogin(true);
-            userSession.setUserEntity(userOptional.get());
+            if(passwordHashingService.matches(loginForm.getPassword(),
+                    userOptional.get().getPassword())) {
+
+                userSession.setLogin(true);
+                userSession.setUserEntity(userOptional.get());
+            }
         }
-        return userOptional.isPresent();
+        return userSession.isLogin();
     }
 }
