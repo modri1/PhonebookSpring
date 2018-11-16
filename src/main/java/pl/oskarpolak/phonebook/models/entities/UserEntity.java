@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.print.attribute.standard.MediaSize;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -14,4 +15,8 @@ public class UserEntity {
     private String login;
     private String password;
     private @Column(name = "creation_time") LocalDateTime creationTime;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<ContactEntity> contacts;
+
 }

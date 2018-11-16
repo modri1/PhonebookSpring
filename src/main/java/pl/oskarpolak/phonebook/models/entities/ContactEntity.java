@@ -1,6 +1,7 @@
 package pl.oskarpolak.phonebook.models.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.JoinColumnOrFormula;
 
 import javax.persistence.*;
 
@@ -17,4 +18,9 @@ public class ContactEntity {
 
     @Column(name = "phone")
     private String number;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
 }

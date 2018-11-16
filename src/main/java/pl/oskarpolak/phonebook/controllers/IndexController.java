@@ -35,7 +35,7 @@ public class IndexController {
                 e.printStackTrace();
             }
         }
-        return "Witaj, " + userSession.getUserEntity().getPassword();
+        return "Witaj, " + userSession.getUserEntity().getContacts();
     }
 
 }
