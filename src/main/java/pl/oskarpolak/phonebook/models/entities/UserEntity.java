@@ -16,8 +16,9 @@ public class UserEntity {
     private String password;
     private @Column(name = "creation_time") LocalDateTime creationTime;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<ContactEntity> contacts;
+
 
 
     @Override

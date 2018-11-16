@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.oskarpolak.phonebook.models.UserSession;
 import pl.oskarpolak.phonebook.models.forms.ContactForm;
 import pl.oskarpolak.phonebook.models.services.ContactService;
 
@@ -11,10 +12,12 @@ import pl.oskarpolak.phonebook.models.services.ContactService;
 public class ContactController {
 
     final ContactService contactService;
+    final UserSession userSession;
 
     @Autowired
-    public ContactController(ContactService contactService) {
+    public ContactController(ContactService contactService, UserSession userSession) {
         this.contactService = contactService;
+        this.userSession = userSession;
     }
 
 
@@ -39,7 +42,10 @@ public class ContactController {
 
     @GetMapping("/contact/show")
     public String showAllContacts(Model model) {
-        model.addAttribute("contacts", contactService.getContacts());
+        if(!userSession.isLogin()){
+            return "redirect:/user/login";
+        }
+        model.addAttribute("contacts", userSession.getUserEntity().getContacts());
         return "contactsList";
     }
 
@@ -61,6 +67,12 @@ public class ContactController {
                 .map(s -> s.toString())
                 .orElse("Contact with this surname not exist");
 
+    }
+
+    @GetMapping("/contact/delete/{contactId}")
+    public String deleteContact(@PathVariable("contactId") int id){
+        contactService.deleteContact(id);
+        return "redirect:/contact/show";
     }
 
 

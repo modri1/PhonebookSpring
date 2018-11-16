@@ -7,7 +7,13 @@
 <body>
     <div style="text-align: center;">
         <ul>
-            <li th:each="contact : ${contacts}" th:text="${contact.getNumber()}"></li>
+            <li th:each="contact : ${contacts}">
+                <span th:text="${contact.getName() + ' ' + contact.getSurname() + ' | '}"></span>
+                <strong th:text="${contact.getNumber()}"></strong>
+                <br/>
+                <a th:href="'/contact/delete/' + ${contact.getId()}">Usuń</a>
+                <hr/>
+            </li>
         </ul>
     </div>
 </body>
